@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<header>
+		<div class="row">
+			<div class="grid-75">
+				<h1>Hello {% if current_user.is_authenticated %} {{ current_user.username }} {% endif %}</h1>
+			</div>
+			<div class="grid-25">
+				{% if current_user.is_authenticated %}
+					<a href="{{ url_for('logout') }}" class="icon-power" title="Log out">Log Out</a>
+				{% endif %}
+			</div>
+		</div>
+	</header>
+	<h1>Tasks:</h1></br>
+	<h3><a href="{{ url_for('newTask') }}">Create new task</a></h3> 
+	{% for i in todo %}
+	<h3>{{ i.title }}</h3>
+	<p>{{ i.content }}</p>
+	<p>{{ i.priority }}</p>
+	<p>{{ i.creation_dateTime }}</p> 
+	<!--<p id='check' class='notdone'><a href="">Done</a></p>
+	<p><a href="{{ url_for('updateTask', priority_id = i.priority_id) }}">Edit</a></p>
+	<p><a href="{{ url_for('delTask', priority_id = i.priority_id) }}">Delete</a></p>
+	{% endfor %}-->
+</body>
+</html>
