@@ -24,9 +24,6 @@ def load_user(user_id):
     except models.DoesNotExist:
         return None
 
-def get_current_user():
-	return current_user
-
 @app.before_request
 def before_request():
 	g.db = models.db
@@ -63,7 +60,7 @@ def login():
 			if check_password_hash(user.password, form.password.data):
 				login_user(user)
 				flash("You've been logged in!", "success")
-				return redirect(url_for('main'))
+				return redirect(url_for('index'))
 			else:
 				flash("Your email or password doesn't match!", "error")
 	return render_template('login.html', form=form)
@@ -75,17 +72,15 @@ def logout():
 	flash("You've been logged out! Come back soon!", "success")
 	return redirect(url_for('index'))
 
-@app.route('/<int:user>/home')
+@app.route('/home/<int:user_id>')
 @login_required
-def main():
-	user = get_current_user().user_id
-	todo = models.Todo.select()
-	return render_template('home.html', todo=todo)
+def main(user_id):
+	todo = models.Todo.select().where(models.User.id == user_id)
+	return render_template('home.html')
 
-@app.route('/<int:user>/new_task')
+@app.route('/new_task')
 @login_required
 def newTask():
-	user = get_current_user().user_id()
 	form = forms.TaskForm()
 	if form.validate_on_submit():
 		try:		
@@ -94,7 +89,7 @@ def newTask():
 				title=form.title.data,
 				content=form.content.data,
 				priority=form.content.data,
-				creation_dateTime=datetime.datetime.now,
+				creation_dateTime=datetime.datetime.now
 				)
 			return redirect(url_for('main', todo=todo))
 		except AttributeError:

@@ -19,7 +19,7 @@
             <nav>
                 <ul class="nav nav-pills pull-right">
                 {% if current_user.is_authenticated %}
-                    <li role="presentation"><a href="{{ url_for('main') }}">Home</a>
+                    <li role="presentation"><a href="{{ url_for('main', user_id = current_user.id) }}">Home</a>
                     </li>
                     <li role="presentation"><a href="{{ url_for('logout') }}">Log Out</a>
                 {% else %}
