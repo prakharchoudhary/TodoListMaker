@@ -60,5 +60,5 @@ class LoginForm(Form):
 class TaskForm(Form):
 	title = StringField('title', validators=[DataRequired()])
 	content = StringField('content')
-	priority = SelectField('priority', choices=[(1,'low'), (2, 'medium'), (3,'high')] ,default='low')
+	priority = SelectField('priority', choices=[('low','low'), ('medium', 'medium'), ('high','high')] ,default='low')
 

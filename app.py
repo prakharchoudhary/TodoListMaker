@@ -78,19 +78,19 @@ def main(user_id):
 	todo = models.Todo.select().where(models.User.id == user_id)
 	return render_template('home.html')
 
-@app.route('/<int:user_id>/new_task')
+@app.route('/<int:user_id>/new_task', methods=('GET', 'POST'))
 @login_required
 def newTask(user_id):
 	form = forms.TaskForm()
+	todo = models.Todo.get()
 	if form.validate_on_submit():
 		try:		
 			flash("You've added a new task!")
 			models.Todo.create_task(
-				title=form.title.data,
-				content=form.content.data,
-				priority=form.content.data,
-				creation_dateTime=datetime.datetime.now,
-				userid = int(user_id)
+				title = form.title.data,
+				content = form.content.data,
+				priority = form.priority.data,
+				userid = user_id
 				)
 			return redirect(url_for('main', todo=todo, user_id=user_id))
 		except AttributeError:

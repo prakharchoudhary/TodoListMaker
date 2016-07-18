@@ -27,32 +27,27 @@ class User(UserMixin, Model):
 			raise ValueError("User already exists")
 
 class Todo(Model):
-	title = CharField(unique=True)
+	title = CharField()
 	content = CharField()
 	priority = CharField()
-	creation_dateTime = DateTimeField(default=datetime.datetime.now)
-	userid = ForeignKeyField(User, related_name="user")
+	userid = IntegerField()
 
 	class Meta:
 		database = db
 
 	@classmethod
-	def create_task(cls, title, content, priority, creation_dateTime, userid):
-		try:
-			with db.transaction():
-				cls.create(
-					title=title,
-					content=content,
-					priority=priority,
-					creation_dateTime=creation_dateTime,
-					userid = userid
-				)
-		except IntegrityError:
-			raise ValueError('Post with the same title already exits')
+	def create_task(cls, title, content, priority, userid):
+		with db.transaction():
+			cls.create(
+				title=title,
+				content=content,
+				priority=priority,
+				userid = userid
+			)
 
 def initialize():
 	db.connect()
-	db.create_tables([User], safe=True)
+	db.create_tables([User, Todo], safe=True)
 	db.close()
 
 
