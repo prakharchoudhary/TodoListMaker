@@ -17,7 +17,7 @@
 		</div>
 	</header>
 	<h1>Tasks:</h1></br>
-	<h3><a href="{{ url_for('newTask') }}">Create new task</a></h3> 
+	<h3><a href="{{ url_for('newTask', user_id = current_user.id) }}">Create new task</a></h3> 
 	{% for i in todo %}
 	<h3>{{ i.title }}</h3>
 	<p>{{ i.content }}</p>

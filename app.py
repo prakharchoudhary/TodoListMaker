@@ -72,15 +72,15 @@ def logout():
 	flash("You've been logged out! Come back soon!", "success")
 	return redirect(url_for('index'))
 
-@app.route('/home/<int:user_id>')
+@app.route('/<int:user_id>/home')
 @login_required
 def main(user_id):
 	todo = models.Todo.select().where(models.User.id == user_id)
 	return render_template('home.html')
 
-@app.route('/new_task')
+@app.route('/<int:user_id>/new_task')
 @login_required
-def newTask():
+def newTask(user_id):
 	form = forms.TaskForm()
 	if form.validate_on_submit():
 		try:		
@@ -89,9 +89,10 @@ def newTask():
 				title=form.title.data,
 				content=form.content.data,
 				priority=form.content.data,
-				creation_dateTime=datetime.datetime.now
+				creation_dateTime=datetime.datetime.now,
+				userid = int(user_id)
 				)
-			return redirect(url_for('main', todo=todo))
+			return redirect(url_for('main', todo=todo, user_id=user_id))
 		except AttributeError:
 			raise ValueError('There is some wrong field here!')
 	return render_template('new_task.html', form=form)			
