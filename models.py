@@ -31,18 +31,20 @@ class Todo(Model):
 	content = CharField()
 	priority = CharField()
 	userid = IntegerField()
+	is_done = BooleanField(default=False)
 
 	class Meta:
 		database = db
 
 	@classmethod
-	def create_task(cls, title, content, priority, userid):
+	def create_task(cls, title, content, priority, userid, is_done):
 		with db.transaction():
 			cls.create(
 				title=title,
 				content=content,
 				priority=priority,
-				userid = userid
+				userid = userid,
+				is_done = is_done
 			)
 
 def initialize():

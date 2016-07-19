@@ -75,14 +75,13 @@ def logout():
 @app.route('/<int:user_id>/home')
 @login_required
 def main(user_id):
-	todo = models.Todo.select().where(models.User.id == user_id)
-	return render_template('home.html')
+	todo = models.Todo.select().where(models.Todo.userid == user_id)
+	return render_template('home.html', todo=todo)
 
 @app.route('/<int:user_id>/new_task', methods=('GET', 'POST'))
 @login_required
 def newTask(user_id):
 	form = forms.TaskForm()
-	todo = models.Todo.get()
 	if form.validate_on_submit():
 		try:		
 			flash("You've added a new task!")
@@ -90,12 +89,32 @@ def newTask(user_id):
 				title = form.title.data,
 				content = form.content.data,
 				priority = form.priority.data,
-				userid = user_id
+				userid = user_id,
+				is_done = False
 				)
+			todo = models.Todo.get()
 			return redirect(url_for('main', todo=todo, user_id=user_id))
 		except AttributeError:
 			raise ValueError('There is some wrong field here!')
-	return render_template('new_task.html', form=form)			
+	return render_template('new_task.html', form=form)	
+
+@app.route('/<int:user_id>/<int:task_id>/check')
+@login_required
+def check_task(user_id, task_id):
+	#current_status = models.Todo.get(models.Todo.id == task_id).is_done
+	todo = models.Todo.select().where(models.Todo.userid == user_id)
+	itemTocheck = models.Todo.update(is_done=True).where(models.Todo.id == task_id)
+	itemTocheck.execute()
+	return redirect(url_for('main', user_id=user_id)) 
+
+@app.route('/<int:user_id>/<int:task_id>/uncheck')
+@login_required
+def uncheck_task(user_id, task_id):
+	#current_status = models.Todo.get(models.Todo.id == task_id).is_done
+	todo = models.Todo.select().where(models.Todo.userid == user_id)
+	itemTocheck = models.Todo.update(is_done=False).where(models.Todo.id == task_id)
+	itemTocheck.execute()
+	return redirect(url_for('main', user_id=user_id))       	
 
 @app.route('/')
 def index():

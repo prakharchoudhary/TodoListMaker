@@ -8,6 +8,11 @@
 		<div class="row">
 			<div class="grid-75">
 				<h1>Hello {% if current_user.is_authenticated %} {{ current_user.username }} {% endif %}</h1>
+				{% with messages=get_flashed_messages() %}
+				{% if messages %}
+				<div class="flash"><p>{{ message }}</p></div>
+				{% endif %}
+				{% endwith %}
 			</div>
 			<div class="grid-25">
 				{% if current_user.is_authenticated %}
@@ -19,10 +24,15 @@
 	<h1>Tasks:</h1></br>
 	<h3><a href="{{ url_for('newTask', user_id = current_user.id) }}">Create new task</a></h3> 
 	{% for i in todo %}
+	{% if i.is_done==True %}
+	<h3 style='text-decoration:line-through'>{{ i.title }}</h3>
+	<p style='text-decoration:line-through'>{{ i.content }}</p>
+	<p><a href="{{ url_for('check_task', user_id = current_user.id, task_id = i.id) }}">Uncheck</a></p>
+	{% else %}
 	<h3>{{ i.title }}</h3>
 	<p>{{ i.content }}</p>
-	<p>{{ i.priority }}</p>
-	<p>{{ i.creation_dateTime }}</p>
+	<p><a href="{{ url_for('uncheck_task', user_id = current_user.id, task_id = i.id) }}">Check</a></p>
+	{% endif %}
 	{% endfor %}
 </body>
 </html>
