@@ -101,7 +101,6 @@ def newTask(user_id):
 @app.route('/<int:user_id>/<int:task_id>/check')
 @login_required
 def check_task(user_id, task_id):
-	#current_status = models.Todo.get(models.Todo.id == task_id).is_done
 	todo = models.Todo.select().where(models.Todo.userid == user_id)
 	itemTocheck = models.Todo.update(is_done=True).where(models.Todo.id == task_id)
 	itemTocheck.execute()
@@ -110,10 +109,17 @@ def check_task(user_id, task_id):
 @app.route('/<int:user_id>/<int:task_id>/uncheck')
 @login_required
 def uncheck_task(user_id, task_id):
-	#current_status = models.Todo.get(models.Todo.id == task_id).is_done
 	todo = models.Todo.select().where(models.Todo.userid == user_id)
 	itemTocheck = models.Todo.update(is_done=False).where(models.Todo.id == task_id)
 	itemTocheck.execute()
+	return redirect(url_for('main', user_id=user_id)) 
+
+@app.route('/<int:user_id>/<int:task_id>/delete')
+@login_required
+def del_task(user_id, task_id):
+	todo = models.Todo.select().where(models.Todo.userid == user_id)
+	itemToDel = models.Todo.delete().where(models.Todo.id == task_id)
+	itemToDel.execute()
 	return redirect(url_for('main', user_id=user_id))       	
 
 @app.route('/')
