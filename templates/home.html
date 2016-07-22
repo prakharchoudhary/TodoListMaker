@@ -1,39 +1,41 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	<header>
-		<div class="row">
-			<div class="grid-75">
-				<h1>Hello {% if current_user.is_authenticated %} {{ current_user.username }} {% endif %}</h1>
-				{% with messages=get_flashed_messages() %}
-				{% if messages %}
-				<div class="flash"><p>{{ message }}</p></div>
-				{% endif %}
-				{% endwith %}
-			</div>
-			<div class="grid-25">
-				{% if current_user.is_authenticated %}
-					<a href="{{ url_for('logout') }}" class="icon-power" title="Log out">Log Out</a>
-				{% endif %}
-			</div>
-		</div>
-	</header>
-	<h1>Tasks:</h1></br>
-	<h3><a href="{{ url_for('newTask', user_id = current_user.id) }}">Create new task</a></h3> 
-	{% for i in todo %}
-	{% if i.is_done==True %}
-	<h3 style='text-decoration:line-through'>{{ i.title }}</h3>
-	<p style='text-decoration:line-through'>{{ i.content }}</p>
-	<p><a href="{{ url_for('uncheck_task', user_id = current_user.id, task_id = i.id) }}">Uncheck</a></p>
-	{% else %}
-	<h3>{{ i.title }}</h3>
-	<p>{{ i.content }}</p>
-	<p><a href="{{ url_for('check_task', user_id = current_user.id, task_id = i.id) }}">Check</a></p>
-	{% endif %}
-	<p><a href="{{ url_for('del_task', user_id = current_user.id, task_id = i.id) }}">Delete</a></p>
-	{% endfor %}
-</body>
-</html>
+{% extends 'layout.html' %}
+
+{% block logout %}
+{% if current_user.is_authenticated %}
+	<li class="active"><a href="{{ url_for('logout') }}">Log Out</a></li>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="grid-75">
+		<h1 style="border-bottom: 1px solid #ccc; border-width: 90%">Hello, {% if current_user.is_authenticated %} {{ current_user.username }} {% endif %}</h1>
+		{% with messages=get_flashed_messages() %}
+		{% if messages %}
+		<div class="flash"><p>{{ message }}</p></div>
+		{% endif %}
+		{% endwith %}
+	</div>
+</div>
+<h3><a href="{{ url_for('newTask', user_id = current_user.id) }}"><button type="button" class="btn btn-primary btn-circle">Add new task</button></a></h3>
+{% for i in todo %}
+
+<div class="cardx">
+{% if i.is_done==True %}
+<h3 style='text-decoration:line-through';><a href="{{ url_for('editTask', user_id = current_user.id, task_id = i.id) }}" style="color: black">{{ i.title }}</a></h3>
+<p style='text-decoration:line-through'>{{ i.content }}</p>
+<p style='text-decoration:line-through'>{{ i.priority }}</p>
+<p><a href="{{ url_for('uncheck_task', user_id = current_user.id, task_id = i.id) }}">Uncheck</a>
+
+{% else %}
+<h3><a href="{{ url_for('editTask', user_id = current_user.id, task_id = i.id) }}" style="color: black;">{{ i.title }}</a></h3>
+<p>{{ i.content }}</p>
+<p>{{ i.priority }}</p>
+
+
+<p><a href="{{ url_for('check_task', user_id = current_user.id, task_id = i.id) }}">Check</a>
+{% endif %}
+<a href="{{ url_for('del_task', user_id = current_user.id, task_id = i.id) }}">Delete</a></p>
+</div>
+{% endfor %}
+{% endblock %}

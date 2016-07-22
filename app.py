@@ -1,5 +1,5 @@
 import datetime
-from flask import (Flask, g, render_template, flash, redirect, url_for, request)
+from flask import (Flask, g, render_template, flash, redirect, url_for)
 from flask_bcrypt import check_password_hash
 from flask_login import (LoginManager, login_user, logout_user, login_required, current_user)
 
@@ -98,10 +98,31 @@ def newTask(user_id):
 			raise ValueError('There is some wrong field here!')
 	return render_template('new_task.html', form=form)	
 
+@app.route('/<int:user_id>/<int:task_id>/edit_task', methods=('GET', 'POST'))
+@login_required
+def editTask(user_id, task_id):
+	form = forms.TaskForm()
+	if form.validate_on_submit():
+		try:		
+			if form.title.data:
+				updateTitle = models.Todo.update(title=form.title.data).where(models.Todo.id == task_id)
+				updateTitle.execute()
+			if form.content.data:
+				updateContent = models.Todo.update(content=form.content.data).where(models.Todo.id == task_id)
+				updateContent.execute()
+			if form.title.data is not models.Todo.select('priority').where(models.Todo.id == task_id):
+				updatePriority = models.Todo.update(priority=form.priority.data).where(models.Todo.id == task_id)
+				updatePriority.execute()
+			todo = models.Todo.get()
+			return redirect(url_for('main', todo=todo, user_id=user_id))
+		except AttributeError:
+			raise ValueError('There is some wrong field here!')
+	return render_template('edit_task.html', form=form)	
+
+
 @app.route('/<int:user_id>/<int:task_id>/check')
 @login_required
 def check_task(user_id, task_id):
-	todo = models.Todo.select().where(models.Todo.userid == user_id)
 	itemTocheck = models.Todo.update(is_done=True).where(models.Todo.id == task_id)
 	itemTocheck.execute()
 	return redirect(url_for('main', user_id=user_id)) 
@@ -109,7 +130,6 @@ def check_task(user_id, task_id):
 @app.route('/<int:user_id>/<int:task_id>/uncheck')
 @login_required
 def uncheck_task(user_id, task_id):
-	todo = models.Todo.select().where(models.Todo.userid == user_id)
 	itemTocheck = models.Todo.update(is_done=False).where(models.Todo.id == task_id)
 	itemTocheck.execute()
 	return redirect(url_for('main', user_id=user_id)) 
@@ -117,7 +137,6 @@ def uncheck_task(user_id, task_id):
 @app.route('/<int:user_id>/<int:task_id>/delete')
 @login_required
 def del_task(user_id, task_id):
-	todo = models.Todo.select().where(models.Todo.userid == user_id)
 	itemToDel = models.Todo.delete().where(models.Todo.id == task_id)
 	itemToDel.execute()
 	return redirect(url_for('main', user_id=user_id))       	

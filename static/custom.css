@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Poiret+One|Josefin+Slab|Lato');
+
+
+/* Page Styles */
+
+.navbar {
+  border-radius: 0;
+}
+
+/* Navbar Color*/
+.navbar-custom {
+  background-color: rgba(63, 195, 128, 0.84);
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+.navbar-custom .container-fluid { padding: 15px; }
+
+/*Brand Text Color*/
+.navbar-custom .navbar-brand {
+  color: #fff ;
+  font-family: Josefin Slab;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+/*Navigation link styles*/
+.navbar-custom .navbar-nav>li>a {
+  color: #fff;
+  font-family: Lato;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 15px;
+  transition: 0.2s ease;
+}
+
+/*Navigation link hover styles*/
+.navbar-custom .navbar-nav>li>a:focus, .navbar-custom .navbar-nav>li>a:hover {
+  background: none;
+  letter-spacing: 5px;
+}
+
+/* Navigation Active Link Style*/
+.navbar-custom .navbar-nav>.active>a, .navbar-custom .navbar-nav>.active>a:focus, .navbar-custom .navbar-nav>.active>a:hover {
+}
+
+/*footer styles*/
+
+.footer {
+  background-color: rgba(63, 195, 128, 0.84);
+  border-top: 1px solid #ccc;
+}
+.footer .copyright{
+  margin:0;
+  padding: 8px 0;
+  color: #ffa;
+}
+.footer .copyright a {
+  color: #111;
+}
+
+/* ===============================================================================
+                         add forms styles here
+================================================================================= */
+
+  /*height: 400px; Remove this  height before/after adding your form*/
+.card {
+  height: 600px;
+  box-shadow: 2px 2px 5px #ccc;
+  display: block;
+  margin: 0 auto;
+  opacity: 0.8;
+}
+
+.cardx{
+  opacity: 1;
+  height: 250px;
+  box-shadow: 2px 2px 5px #ccc;
+  height: 50px;
+  text-align: left;
+  margin: auto;
+}
+
+
+form {
+    margin: 0;
+    padding: 40px;
+}
+input {
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #D3D8DC;
+  outline: 0;
+  background: #fff;
+  padding: 20px 0 4px;
+  margin: 0 0 20px;
+  color: #777B7E;
+}
+input:focus {
+  border-color: #6ECDF7;
+  color: #2C3238;
+}
+textarea {
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #D3D8DC;
+  outline: 0;
+  background: #fff;
+  padding: 20px 0 4px;
+  margin: 0 0 20px;
+  color: #777B7E;
+}
+textarea:focus {
+  border-color: #6ECDF7;
+  color: #2C3238;
+}
+
+button {
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  background: #6ECDF7;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  opacity: .8;
+  transition: .35s linear;
+}
+button:hover {
+  opacity: 1;
+}
+button.small {
+    padding: 1em 0.5em;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+/* ===================================================================================
+               Styles required for  footer stick at bottom (dont touch)
+ =====================================================================================*/
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.wrap {
+  flex:1;
+}
+
+

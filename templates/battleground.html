@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href='dist/css/battleground.css' rel='stylesheet' />    
+    <link rel="stylesheet" href="animate.css">
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <style type="text/css">
+        nav {
+            box-shadow: 7px 5px 16px 0px rgba(0, 0, 0, 0.2);
+        }
+      .navbar-nav > li > a:hover {
+        background-color: #506A85 ;
+      }
+      .nav > li > a:hover, .nav > li > a:active, .nav > li > a:focus {
+        background: rgb(46, 72, 99) none repeat scroll 0% 0% !important;
+      }
+
+    </style>
+</head>
+<body>
+      <nav class="navbar navbar-static-top" role="navigation" style="color:#fff;background-color:#334D68 !important;">
+        <!-- Sidebar toggle button-->
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav" style="width:100%;">
+            <h2 style="float:left;margin-left:15px;">Plexus.</h2>
+            <li class="dropdown user user-menu pull-right">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
+                    style="padding-top:25px;padding-bottom: 22px;line-height: 20px;color: rgb(255, 255, 255);">
+                <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <span class="hidden-xs text-white">Aditya</span>
+              </a>
+              <ul class="dropdown-menu bg-purple">
+                <!-- User image -->
+                <li class="user-header">
+                  <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <p>
+                    Aditya
+                    <small>Rocking</small>
+                  </p>
+                </li>
+                <!-- Menu Body -->
+                <li class="user-body" style="background-color:#fff;">
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Feel</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">The</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Zeal</a>
+                  </div>
+                </li>
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a href="#" class="btn btn-default btn-flat">Rank</a>
+                  </div>
+                  <div class="pull-right">
+                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <!-- Control Sidebar Toggle Button -->
+          </ul>
+        </div>
+      </nav>
+<div class="container-fluid">
+    <div class="row">
+        <h1 class="title">
+            <br>
+            This is the <strong>Battleground</strong>
+            <br>
+            <small>Adrenaline's Too High , There's No Denial</small>
+        </h1>
+        <div class="col-sm-10 col-lg-8 col-lg-offset-2 col-sm-offset-1">
+<!--         <div class="col-sm-1"></div> -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card-container animated fadeIn">
+                <div class="card">
+                    <div class="front">
+                        <div class="cover animated fadeInDown" style="z-index:-100;transition:2s;">
+                            <img src="dist/img/rotating_card_thumb3.png"/>
+                        </div>
+                        <div class="user">
+                            <img class="img-circle" src="dist/img/rotating_card_profile.png"/>
+                        </div>
+                        <div class="content">
+                            <div class="main">
+                                <h3 class="name">Event 1</h3>
+                                <hr>
+                                <p id="date"><i class="ion ion-android-calendar">&nbsp;</i> 07-04-16</p>
+                                <h5 class="text-center" id="time"></i><strong> 02</strong> hours <strong>remaining</strong></h5>
+                                <h5 class="text-center" id="prize">Prizes : upto  <strong>Rs 500</strong></h5>
+                                <h5 class="text-center" id="query-no"><strong> Query</strong> : +919911502984</h5>
+                            </div>
+                        </div>
+                    </div> <!-- end front panel -->
+                    <div class="back">
+                        <div class="header">
+                            <h3 id="name">Event 1</h3>
+                        </div> 
+                        <div class="content">
+                            <div class="main">
+                                <h4 class="text-center">Synopsis</h4>
+                                <p><i class="ion ion-quote"></i>&nbsp;Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event</p>
+                                <br>
+                                <div class="text-center" id="go">
+                                  <a href="#" style="text-decoration:none;"><span><i class="ion ion-flash"></i></span>&nbsp;Play Now</a>
+                                </div>
+                                <!-- ./col -->
+                            </div>
+                        </div>
+                        <div class="footer">
+                           <p><i class="ion ion-android-people"></i>&nbsp;<strong>220</strong> competitors so far</p>
+                        </div>
+                    </div> <!-- end back panel -->
+                </div> <!-- end card -->
+            </div> <!-- end card-container -->
+        </div> <!-- end col-sm-6 -->
+
+
+        <div class="col-md-4 col-sm-6">
+            <div class="card-container animated fadeIn">
+                <div class="card">
+                    <div class="front">
+                        <div class="cover animated fadeInDown" style="z-index:-100;">
+                            <img src="dist/img/rotating_card_thumb3.png"/>
+                        </div>
+                        <div class="user">
+                            <img class="img-circle" src="dist/img/rotating_card_profile.png"/>
+                        </div>
+                        <div class="content">
+                            <div class="main">
+                                <h3 class="name">Event 1</h3>
+                                <hr>
+                                <p id="date"><i class="ion ion-android-calendar">&nbsp;</i>07-04-16</p>
+                                <h5 class="text-center" id="time"><strong>02</strong> hours <strong>remaining</strong></h5>
+                                <h5 class="text-center" id="prize">Prizes : upto  <strong>Rs 500</strong></h5>
+                                <h5 class="text-center" id="query-no"><strong>Query</strong> : +919911502984</h5>
+                            </div>
+                        </div>
+                    </div> <!-- end front panel -->
+                    <div class="back">
+                        <div class="header">
+                            <h3 id="name">Event 1</h3>
+                        </div> 
+                        <div class="content">
+                            <div class="main">
+                                <h4 class="text-center">Synopsis</h4>
+                                <p>Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event</p>
+                                <br>
+                                <div class="text-center" id="go">
+                                  <a href="#" style="text-decoration:none;"><span><i class="ion ion-flash"></i></span>&nbsp;Play Now</a>
+                                </div>
+                                <!-- ./col -->
+                            </div>
+                        </div>
+                        <div class="footer">
+                           <p><strong>220</strong> competitors so far</p>
+                        </div>
+                    </div> <!-- end back panel -->
+                </div> <!-- end card -->
+            </div> <!-- end card-container -->
+        </div> <!-- end col-sm-6 -->
+
+
+        <div class="col-md-4 col-sm-6">
+            <div class="card-container animated fadeIn">
+                <div class="card">
+                    <div class="front">
+                        <div class="cover animated fadeInDown" style="z-index:-100;">
+                            <img src="dist/img/rotating_card_thumb3.png"/>
+                        </div>
+                        <div class="user">
+                            <img class="img-circle" src="dist/img/rotating_card_profile.png"/>
+                        </div>
+                        <div class="content">
+                            <div class="main">
+                                <h3 class="name">Event 1</h3>
+                                <hr>
+                                <p id="date"><i class="ion ion-android-calendar">&nbsp;</i>07-04-16</p>
+                                <h5 class="text-center" id="time"><strong>02</strong> hours <strong>remaining</strong></h5>
+                                <h5 class="text-center" id="prize">Prizes : upto  <strong>Rs 500</strong></h5>
+                                <h5 class="text-center" id="query-no"><strong>Query</strong> : +919911502984</h5>
+                            </div>
+                        </div>
+                    </div> <!-- end front panel -->
+                    <div class="back">
+                        <div class="header">
+                            <h3 id="name">Event 1</h3>
+                        </div> 
+                        <div class="content">
+                            <div class="main">
+                                <h4 class="text-center">Synopsis</h4>
+                                <p>Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event</p>
+                                <br>
+                                <div class="text-center" id="go">
+                                  <a href="#" style="text-decoration:none;"><span><i class="ion ion-flash"></i></span>&nbsp;Play Now</a>
+                                </div>
+                                <!-- ./col -->
+                            </div>
+                        </div>
+                        <div class="footer">
+                           <p><strong>220</strong> competitors so far</p>
+                        </div>
+                    </div> <!-- end back panel -->
+                </div> <!-- end card -->
+            </div> <!-- end card-container -->
+        </div> <!-- end col-sm-6 -->
+
+
+        <div class="col-md-4 col-sm-6">
+            <div class="card-container animated fadeIn">
+                <div class="card">
+                    <div class="front">
+                        <div class="cover animated fadeInDown" style="z-index:-100;">
+                            <img src="dist/img/rotating_card_thumb3.png"/>
+                        </div>
+                        <div class="user">
+                            <img class="img-circle" src="dist/img/rotating_card_profile.png"/>
+                        </div>
+                        <div class="content">
+                            <div class="main">
+                                <h3 class="name">Event 1</h3>
+                                <hr>
+                                <p id="date"><i class="ion ion-android-calendar">&nbsp;</i>07-04-16</p>
+                                <h5 class="text-center" id="time"><strong>02</strong> hours <strong>remaining</strong></h5>
+                                <h5 class="text-center" id="prize">Prizes : upto  <strong>Rs 500</strong></h5>
+                                <h5 class="text-center" id="query-no"><strong>Query</strong> : +919911502984</h5>
+                            </div>
+                        </div>
+                    </div> <!-- end front panel -->
+                    <div class="back">
+                        <div class="header">
+                            <h3 id="name">Event 1</h3>
+                        </div> 
+                        <div class="content">
+                            <div class="main">
+                                <h4 class="text-center">Synopsis</h4>
+                                <p>Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event</p>
+                                <br>
+                                <div class="text-center" id="go">
+                                  <a href="#" style="text-decoration:none;"><span><i class="ion ion-flash"></i></span>&nbsp;Play Now</a>
+                                </div>
+                                <!-- ./col -->
+                            </div>
+                        </div>
+                        <div class="footer">
+                           <p><strong>220</strong> competitors so far</p>
+                        </div>
+                    </div> <!-- end back panel -->
+                </div> <!-- end card -->
+            </div> <!-- end card-container -->
+        </div> <!-- end col-sm-6 -->
+
+
+
+        <div class="col-md-4 col-sm-6">
+            <div class="card-container animated fadeIn">
+                <div class="card">
+                    <div class="front">
+                        <div class="cover animated fadeInDown" style="z-index:-100;">
+                            <img src="dist/img/rotating_card_thumb3.png"/>
+                        </div>
+                        <div class="user">
+                            <img class="img-circle" src="dist/img/rotating_card_profile.png"/>
+                        </div>
+                        <div class="content">
+                            <div class="main">
+                                <h3 class="name">Event 1</h3>
+                                <hr>
+                                <p id="date"><i class="ion ion-android-calendar">&nbsp;</i>07-04-16</p>
+                                <h5 class="text-center" id="time"><strong>02</strong> hours <strong>remaining</strong></h5>
+                                <h5 class="text-center" id="prize">Prizes : upto  <strong>Rs 500</strong></h5>
+                                <h5 class="text-center" id="query-no"><strong>Query</strong> : +919911502984</h5>
+                            </div>
+                        </div>
+                    </div> <!-- end front panel -->
+                    <div class="back">
+                        <div class="header">
+                            <h3 id="name">Event 1</h3>
+                        </div> 
+                        <div class="content">
+                            <div class="main">
+                                <h4 class="text-center">Synopsis</h4>
+                                <p>Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event</p>
+                                <br>
+                                <div class="text-center" id="go">
+                                  <a href="#" style="text-decoration:none;"><span><i class="ion ion-flash"></i></span>&nbsp;Play Now</a>
+                                </div>
+                                <!-- ./col -->
+                            </div>
+                        </div>
+                        <div class="footer">
+                           <p><strong>220</strong> competitors so far</p>
+                        </div>
+                    </div> <!-- end back panel -->
+                </div> <!-- end card -->
+            </div> <!-- end card-container -->
+        </div> <!-- end col-sm-6 -->
+
+
+        <div class="col-md-4 col-sm-6">
+            <div class="card-container animated fadeIn">
+                <div class="card">
+                    <div class="front">
+                        <div class="cover animated fadeInDown" style="z-index:-100;">
+                            <img src="dist/img/rotating_card_thumb3.png"/>
+                        </div>
+                        <div class="user">
+                            <img class="img-circle" src="dist/img/rotating_card_profile.png"/>
+                        </div>
+                        <div class="content">
+                            <div class="main">
+                                <h3 class="name">Event 1</h3>
+                                <hr>
+                                <p id="date"><i class="ion ion-android-calendar">&nbsp;</i>07-04-16</p>
+                                <h5 class="text-center" id="time"><strong>02</strong> hours <strong>remaining</strong></h5>
+                                <h5 class="text-center" id="prize">Prizes : upto  <strong>Rs 500</strong></h5>
+                                <h5 class="text-center" id="query-no"><strong>Query</strong> : +919911502984</h5>
+                            </div>
+                        </div>
+                    </div> <!-- end front panel -->
+                    <div class="back">
+                        <div class="header">
+                            <h3 id="name">Event 1</h3>
+                        </div> 
+                        <div class="content">
+                            <div class="main">
+                                <h4 class="text-center">Synopsis</h4>
+                                <p>Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event Event 1 is san event</p>
+                                <br>
+                                <div class="text-center" id="go">
+                                  <a href="#" style="text-decoration:none;"><span><i class="ion ion-flash"></i></span>&nbsp;Play Now</a>
+                                </div>
+                                <!-- ./col -->
+                            </div>
+                        </div>
+                        <div class="footer">
+                           <p><strong>220</strong> competitors so far</p>
+                        </div>
+                    </div> <!-- end back panel -->
+                </div> <!-- end card -->
+            </div> <!-- end card-container -->
+        </div> <!-- end col-sm-6 -->
+
+
+
+        </div> <!-- end col-sm-11 --> 
+    </div> <!-- end row -->
+    <div class="space-200"></div>   
+   
+</div>
+<footer class="main-footer" style="margin-left:0;">
+    <div class="pull-right hidden-xs">
+      <b>Zealicon</b>'16
+    </div>
+    <strong>Copyright &copy; 2015-2016 <a href="http://hackncs.com" class="text-grey">Nibble Computer Labs</a>.</strong> All rights reserved.
+  </footer> 
+<script src="dist/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+	
+<script type="text/javascript">
+    $().ready(function(){
+        $('[rel="tooltip"]').tooltip();
+        
+    });
+    
+    function rotateCard(btn){
+        var $card = $(btn).closest('.card-container');
+        console.log($card);
+        if($card.hasClass('hover')){
+            $card.removeClass('hover');
+        } else {
+            $card.addClass('hover');
+        }
+    }
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46172202-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>
