@@ -76,9 +76,9 @@
   opacity: 1;
   height: 250px;
   box-shadow: 2px 2px 5px #ccc;
-  height: 50px;
+  height: 100px;
   text-align: left;
-  margin: auto;
+  padding: 0px 10px;
 }
 
 
@@ -135,6 +135,16 @@ button.small {
     text-align: center;
 }
 
+select{
+  width: 100%;
+  border-radius: 4px;
+  margin: 20px 0 20px;
+  opacity: 0.8;
+}
+
+select:hover{
+  opacity: 1;
+}
 
 /* ===================================================================================
                Styles required for  footer stick at bottom (dont touch)
@@ -144,6 +154,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-image: url("../assets/todo_list.png");
 }
 
 .wrap {

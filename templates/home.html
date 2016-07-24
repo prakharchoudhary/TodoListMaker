@@ -20,22 +20,21 @@
 <h3><a href="{{ url_for('newTask', user_id = current_user.id) }}"><button type="button" class="btn btn-primary btn-circle">Add new task</button></a></h3>
 {% for i in todo %}
 
-<div class="cardx">
-{% if i.is_done==True %}
-<h3 style='text-decoration:line-through';><a href="{{ url_for('editTask', user_id = current_user.id, task_id = i.id) }}" style="color: black">{{ i.title }}</a></h3>
-<p style='text-decoration:line-through'>{{ i.content }}</p>
-<p style='text-decoration:line-through'>{{ i.priority }}</p>
-<p><a href="{{ url_for('uncheck_task', user_id = current_user.id, task_id = i.id) }}">Uncheck</a>
-
-{% else %}
-<h3><a href="{{ url_for('editTask', user_id = current_user.id, task_id = i.id) }}" style="color: black;">{{ i.title }}</a></h3>
+<div class="cardx row">
+<div class="col-sm-9 col-md-6">
+<h3><a href="{{ url_for('editTask', user_id = current_user.id, task_id = i.id) }}" style="color: black">{{ i.title }}</a></h3>
 <p>{{ i.content }}</p>
 <p>{{ i.priority }}</p>
-
-
-<p><a href="{{ url_for('check_task', user_id = current_user.id, task_id = i.id) }}">Check</a>
+</div>
+	
+<div class="col-sm-3 col-md-6">
+{% if i.is_done==True %}
+<a href="{{ url_for('uncheck_task', user_id = current_user.id, task_id = i.id) }}"><button style="width: 60px; height: auto;">Uncheck</button></a>
+{% else %}
+<a href="{{ url_for('check_task', user_id = current_user.id, task_id = i.id) }}"><button style="background-color: green; width: 60px; height: auto;">Check</button></a>
 {% endif %}
-<a href="{{ url_for('del_task', user_id = current_user.id, task_id = i.id) }}">Delete</a></p>
+<a href="{{ url_for('del_task', user_id = current_user.id, task_id = i.id) }}"><button style="background-color: red; width: 60px; height: auto;">Delete</button></a>
+</div>
 </div>
 {% endfor %}
 {% endblock %}
