@@ -31,6 +31,7 @@ class Todo(Model):
 	content = CharField()
 	priority = CharField()
 	userid = IntegerField()
+	creation_date = datetime.datetime.now
 	is_done = BooleanField(default=False)
 
 	class Meta:

@@ -70,16 +70,17 @@
   display: block;
   margin: 0 auto;
   opacity: 0.8;
+  overflow-y: auto;
 }
 
 .cardx{
   opacity: 1;
-  height: 250px;
   box-shadow: 2px 2px 5px #ccc;
-  height: 100px;
+  min-height: 100px;
   text-align: left;
   padding: 0px 10px;
-}
+  overflow: hidden; 
+} 
 
 
 form {
@@ -144,6 +145,16 @@ select{
 
 select:hover{
   opacity: 1;
+}
+
+.buttons{
+  float: right;
+  margin: auto;
+  padding-top: 20px;
+}
+
+.Done{
+  text-decoration: line-through;
 }
 
 /* ===================================================================================
