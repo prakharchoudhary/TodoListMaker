@@ -22,17 +22,35 @@
 
 <div class="cardx row">
 <div class="col-sm-9 col-md-6" id="task">
+{% if i.is_done==True %}
+
+<h3 class="done"><a href="{{ url_for('editTask', user_id = current_user.id, task_id = i.id) }}" style="color: black">{{ i.title }}</a></h3>
+
+<p class="done">{{ i.content }}</p>
+<p class="done">{{ i.priority }}</p>
+
+{% else %}
+
 <h3><a href="{{ url_for('editTask', user_id = current_user.id, task_id = i.id) }}" style="color: black">{{ i.title }}</a></h3>
 <p>{{ i.content }}</p>
 <p>{{ i.priority }}</p>
+
+{% endif %}
 </div>
 	
 <div class="col-sm-9 col-md-6 buttons">
-{% if i.is_done==True %}""
-<a href="{{ url_for('uncheck_task', user_id = current_user.id, task_id = i.id) }}"><button id="status" style="width: 60px; height: auto;">Uncheck</button></a>
+{% if i.is_done==True %}
+
+<a href="{{ url_for('uncheck_task', user_id = current_user.id, task_id = i.id) }}"><button id="uncheck" style="width: 60px; height: auto;">Uncheck</button></a>
+
+
 {% else %}
-<a href="{{ url_for('check_task', user_id = current_user.id, task_id = i.id) }}"><button id="status" style="background-color: green; width: 60px; height: auto;">Check</button></a>
+
+<a href="{{ url_for('check_task', user_id = current_user.id, task_id = i.id) }}"><button id="check" style="background-color: green; width: 60px; height: auto;">Check</button></a>
+
+
 {% endif %}
+
 <a href="{{ url_for('del_task', user_id = current_user.id, task_id = i.id) }}"><button style="background-color: red; width: 60px; height: auto;">Delete</button></a>
 </div>
 </div>

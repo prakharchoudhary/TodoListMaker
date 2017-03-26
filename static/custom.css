@@ -172,4 +172,7 @@ body {
   flex:1;
 }
 
+.done{
+  text-decoration: line-through;
+}
 

@@ -101,7 +101,8 @@ def newTask(user_id):
 @app.route('/<int:user_id>/<int:task_id>/edit_task', methods=('GET', 'POST'))
 @login_required
 def editTask(user_id, task_id):
-	form = forms.TaskForm()
+	task = models.Todo.get(id=task_id)
+	form = forms.TaskForm(obj=task)
 	if form.validate_on_submit():
 		try:		
 			if form.title.data:
