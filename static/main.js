@@ -1,7 +1,17 @@
 $('.check_button').click(function() {
 	console.log("Clicked!");
+	$.ajax({
+		url: '/check',
+		data: {'task_id': $('.task_id').val()},
+		type: 'POST',
+		success: function(response) {
+            console.log(response);
+		},
+        error: function(error) {
+	        console.log(error);
+        }
+	});
 	var c = $(this).attr('class').split(" ");
-	console.log(c);
 	if(c[1] == 'notDone'){
 		$(this).removeClass('notDone');
 		$(this).addClass('Done');
