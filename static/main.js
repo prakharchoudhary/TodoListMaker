@@ -1,5 +1,5 @@
 $('.check_button').click(function() {
-	console.log("Clicked!");
+	// console.log("Clicked!");
 	$.ajax({
 		url: '/check',
 		data: {'task_id': $('.task_id').val()},
@@ -34,15 +34,18 @@ $( document ).ready(function() {
     as the page initializes.
     */
     $('.check_button').each(function() {
-    	if("{{ i.is_Done }}" == true){
-    		$(this).addClass('Done');
-			$(this).text('Uncheck');
-			$('#task').addClass('taskdone')
+    	// console.log($('.task_status').val());
+    	if($('.task_status').val() == "True"){
+    		$('.check_button').addClass('Done');
+			$('.check_button').text('Uncheck');
+			$('#task').addClass('taskdone');
 
     	}
-    	else
-    		$(this).addClass('notDone');
-			$(this).text('Check');
-			$('#task').removeClass('taskdone')
+    	
+    	else{
+    		$('.check_button').addClass('notDone');
+			$('.check_button').text('Check');
+			$('#task').removeClass('taskdone');	
+    	}
     });
 });

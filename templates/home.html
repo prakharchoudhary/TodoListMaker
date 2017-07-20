@@ -22,39 +22,16 @@
 
 <div class="cardx row">
 <div class="col-sm-9 col-md-6" id="task">
-<!-- {% if i.is_done==True %}
 
-<h3 class="done"><a href="{{ url_for('editTask', user_id = current_user.id, task_id = i.id) }}" style="color: black">{{ i.title }}</a></h3>
-
-<p class="done">{{ i.content }}</p>
-<p class="done">{{ i.priority }}</p>
-
-{% else %}
-
-<h3><a href="{{ url_for('editTask', user_id = current_user.id, task_id = i.id) }}" style="color: black">{{ i.title }}</a></h3>
-<p>{{ i.content }}</p>
-<p>{{ i.priority }}</p>
-
-{% endif %} -->
 <h3 class="task"><a href="{{ url_for('editTask', user_id = current_user.id, task_id = i.id) }}" style="color: black">{{ i.title }}</a></h3>
 <p class="task">{{ i.content }}</p>
 <p class="task">{{ i.priority }}</p>
 <input class="task_id" value="{{ i.id }}" hidden>
+<input class="task_status" value="{{ i.is_done }}" hidden>
 
 </div>
 	
 <div class="col-sm-9 col-md-6 buttons">
-<!-- {% if i.is_done==True %}
-
-<a href="{{ url_for('uncheck_task', user_id = current_user.id, task_id = i.id) }}"><button id="uncheck" style="width: 60px; height: auto;">Uncheck</button></a>
-
-
-{% else %}
-
-<a href="{{ url_for('check_task', user_id = current_user.id, task_id = i.id) }}"><button id="check" style="background-color: green; width: 60px; height: auto;">Check</button></a>
-
-
-{% endif %} -->
 
 <a href="#">
 	<button class="check_button"></button>
