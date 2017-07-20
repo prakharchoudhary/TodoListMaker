@@ -172,7 +172,21 @@ body {
   flex:1;
 }
 
-.done{
+.taskdone{
   text-decoration: line-through;
 }
 
+/* ===================================================================================
+                Customization of elements for better UI
+ =====================================================================================*/
+
+.notDone {
+  background-color: green;
+  width: 60px;
+  height: auto;
+}
+
+.Done {
+  width: 60px;
+  height: auto;
+}
