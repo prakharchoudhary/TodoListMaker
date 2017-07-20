@@ -1,5 +1,5 @@
-import datetime
-from flask import (Flask, g, render_template, flash, redirect, url_for)
+import datetime, json
+from flask import (Flask, g, render_template, flash, redirect, url_for, request)
 from flask_bcrypt import check_password_hash
 from flask_login import (LoginManager, login_user, logout_user, login_required, current_user)
 
@@ -121,19 +121,36 @@ def editTask(user_id, task_id):
 	return render_template('edit_task.html', form=form)	
 
 
-@app.route('/<int:user_id>/<int:task_id>/check')
-@login_required
-def check_task(user_id, task_id):
-	itemTocheck = models.Todo.update(is_done=True).where(models.Todo.id == task_id)
-	itemTocheck.execute()
-	return redirect(url_for('main', user_id=user_id)) 
+# @app.route('/<int:user_id>/<int:task_id>/check')
+# @login_required
+# def check_task(user_id, task_id):
+# 	itemTocheck = models.Todo.update(is_done=True).where(models.Todo.id == task_id)
+# 	itemTocheck.execute()
+# 	return redirect(url_for('main', user_id=user_id)) 
 
-@app.route('/<int:user_id>/<int:task_id>/uncheck')
+# @app.route('/<int:user_id>/<int:task_id>/uncheck')
+# @login_required
+# def uncheck_task(user_id, task_id):
+# 	itemTocheck = models.Todo.update(is_done=False).where(models.Todo.id == task_id)
+# 	itemTocheck.execute()
+# 	return redirect(url_for('main', user_id=user_id)) 
+
+@app.route('/check', methods=('GET', 'POST'))
 @login_required
-def uncheck_task(user_id, task_id):
-	itemTocheck = models.Todo.update(is_done=False).where(models.Todo.id == task_id)
-	itemTocheck.execute()
-	return redirect(url_for('main', user_id=user_id)) 
+def check_task():
+	# itemTocheck = models.Todo.update(is_done=True).where(models.Todo.id == task_id)
+	data = int(request.form['task_id'])
+	print(type(data))
+	itemTocheck = models.Todo.get(models.Todo.id == data)
+	# print(itemTocheck)
+	item_status = itemTocheck.is_done
+	print(item_status)
+	itemUpdate = models.Todo.update(is_done = ~(item_status)).where(models.Todo.id == data)
+	# itemTocheck.execute()
+	itemUpdate.execute()
+	# return redirect(url_for('main', user_id=user_id)) 
+	return json.dumps({'status': 'OK'})
+
 
 @app.route('/<int:user_id>/<int:task_id>/delete')
 @login_required
