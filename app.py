@@ -2,8 +2,10 @@ import datetime, json
 from flask import (Flask, g, render_template, flash, redirect, url_for, request)
 from flask_bcrypt import check_password_hash
 from flask_login import (LoginManager, login_user, logout_user, login_required, current_user)
+from flask_migrate import Migrate
 
 import models
+from models import *
 import forms
 
 app = Flask(__name__)
@@ -12,6 +14,8 @@ app.secret_key = "jasddbhA4576GJLKDSHHOAUI.3KSDFH_75"
 DEBUG = True
 PORT = 8000
 HOST = '0.0.0.0'
+
+Migrate(db, User, Todo)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -90,7 +94,8 @@ def newTask(user_id):
 				content = form.content.data,
 				priority = form.priority.data,
 				userid = user_id,
-				is_done = False
+				is_done = False,
+				reminder_time = form.reminder_time.data
 				)
 			todo = models.Todo.get()
 			return redirect(url_for('main', todo=todo, user_id=user_id))
@@ -124,12 +129,9 @@ def editTask(user_id, task_id):
 @login_required
 def check_task():
 	data = int(request.form['task_id'])
-	print(type(data))
 	itemTocheck = models.Todo.get(models.Todo.id == data)
 	item_status = itemTocheck.is_done
-	print type(item_status)
 	itemUpdate = models.Todo.update(is_done = (item_status==False)).where(models.Todo.id == data)
-	print(models.Todo.get(models.Todo.id == data).is_done)
 	itemUpdate.execute()
 	return json.dumps({'status': 'OK'})
 

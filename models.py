@@ -33,6 +33,7 @@ class Todo(Model):
 	userid = IntegerField()
 	creation_date = datetime.datetime.now
 	is_done = BooleanField(default=False)
+	# reminder_time = DateTimeField(default=None)
 
 	class Meta:
 		database = db
@@ -45,7 +46,8 @@ class Todo(Model):
 				content=content,
 				priority=priority,
 				userid = userid,
-				is_done = is_done
+				is_done = is_done,
+				# reminder_time = reminder_time
 			)
 
 def initialize():

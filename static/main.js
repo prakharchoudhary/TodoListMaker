@@ -29,6 +29,7 @@ $('.check_button').click(function() {
 
 $( document ).ready(function() {
     console.log( "ready!" );
+    
     /*
     Assings a class to the check button on the basis of status;
     as the page initializes.
@@ -48,4 +49,8 @@ $( document ).ready(function() {
 			$('#task').removeClass('taskdone');	
     	}
     });
+
+    //Set the remineder_time input field to type="datetime"
+    $('input[id=reminder_time]').attr('type', 'datetime-local')
+
 });

@@ -61,4 +61,4 @@ class TaskForm(Form):
 	title = StringField('title', validators=[DataRequired()])
 	content = StringField('content')
 	priority = SelectField('priority', choices=[('', 'Priority'), ('low','low'), ('medium', 'medium'), ('high','high')], default='Priority')
-
+	reminder_time = DateTimeField('reminder_time', default=None)
