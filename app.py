@@ -79,7 +79,7 @@ def logout():
 @app.route('/<int:user_id>/home')
 @login_required
 def main(user_id):
-	todo = models.Todo.select().where(models.Todo.userid == user_id)
+	todo = models.Todo.select().where(models.Todo.userid == user_id).order_by(Todo.priority.desc())
 	return render_template('home.html', todo=todo)
 
 @app.route('/<int:user_id>/new_task', methods=('GET', 'POST'))
