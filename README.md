@@ -6,7 +6,7 @@ A python-flask based Todo-list maker. Create and keep a private record of all th
 
 * python
 * pip
-* SQLAlchemy
+* peewee
 * Flask
 
 ## How To Install and Run the Project :
