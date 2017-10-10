@@ -3,7 +3,8 @@ from flask_wtf import Form
 from wtforms import StringField, PasswordField, DateTimeField, SelectField
 from wtforms.validators import (DataRequired, Regexp, ValidationError, Email,
                                Length, EqualTo)
-
+from wtforms.fields.html5 import DateField
+from datetime import date
 from models import User
 
 def name_exists(form, field):
@@ -61,4 +62,4 @@ class TaskForm(Form):
 	title = StringField('title', validators=[DataRequired()])
 	content = StringField('content')
 	priority = SelectField('priority', choices=[('', 'Priority'), ('low','low'), ('medium', 'medium'), ('high','high')], default='Priority')
-
+	date = DateField('Pick a Date')

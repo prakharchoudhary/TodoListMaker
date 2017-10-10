@@ -89,6 +89,7 @@ def newTask(user_id):
 				title = form.title.data,
 				content = form.content.data,
 				priority = form.priority.data,
+				date = form.date.data,
 				userid = user_id,
 				is_done = False
 				)
@@ -104,10 +105,13 @@ def editTask(user_id, task_id):
 	task = models.Todo.get(id=task_id)
 	form = forms.TaskForm(obj=task)
 	if form.validate_on_submit():
-		try:		
+		try:
 			if form.title.data:
 				updateTitle = models.Todo.update(title=form.title.data).where(models.Todo.id == task_id)
-				updateTitle.execute()
+				updateTitle.execute()		
+			if form.date.data:
+				updateDate = models.Todo.update(date=form.date.data).where(models.Todo.id == task_id)
+				updateDate.execute()
 			if form.content.data:
 				updateContent = models.Todo.update(content=form.content.data).where(models.Todo.id == task_id)
 				updateContent.execute()
