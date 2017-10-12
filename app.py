@@ -115,7 +115,7 @@ def editTask(user_id, task_id):
 				updatePriority = models.Todo.update(priority=form.priority.data).where(models.Todo.id == task_id)
 				updatePriority.execute()
 			todo = models.Todo.get()
-			return redirect(url_for('main', todo=todo, user_id=user_id))
+			return redirect(url_for('main', user_id=user_id))
 		except AttributeError:
 			raise ValueError('There is some wrong field here!')
 	return render_template('edit_task.html', form=form)
