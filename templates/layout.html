@@ -1,82 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% block title %}{% endblock %}
+  <html>
+    <head>
+      <script type="text/javascript">
+        window.onload = function() {
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/static/custom.css">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
+          {% with messages=get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                Materialize.toast('{{ message }}', 4000);
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        };
+      </script>
 
-    <!-- all content of page except footer should be in this "wrap" -->
-    <div class="wrap">
-      <nav class="navbar navbar-custom" role="navigation">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ url_for('index') }}"> To Do App</a>
+
+      <title>Todo List Maker | {% block title %}{% endblock %}</title>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky" rel="stylesheet">
+        
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+      
+      <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
+
+      <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}"/>
+    </head>
+
+    <body>
+        {% block content %}{% endblock %}
+
+        <footer>
+          <br><br>
+          <div class="row">
+              <div class="flow-text col s12 center-align" style="padding-top: 100px;">
+                  &copy; Copyright <a href="https://www.hackncs.com/">Nibble Computer Society</a>
+              </div>
           </div>
-
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="navbar">
-
-            <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
-              {% block logout %}{% endblock %}
-            </ul>
-
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </nav>
-
-          <!-- Page content -->
-          <div class='container '>
-            <div class='row '>
-                <div class="col-xs-1 col-sm-3"></div>
-                <div class="card col-xs-10 col-sm-6 text-center">
-
-                  <!-- Place LOGIN / SINGUP FORMS here -->
-                  {% block content %}{% endblock %}
-
-                </div>
-            </div>
-          </div>
-
-    </div>
-    <!-- wrap ends -->
-
-    <!-- footer start -->
-    <div class="footer">
-      <div class="container">
-        <!-- <p class="copyright"> &copy; Copyright <a href="https://www.hackncs.com"> Nibble Computer Society </a> </p> -->
-      </div>
-    </div>
-
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="../static/main.js"></script>
-    
-  </body>
-</html>
+        </footer>
+       
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    </body>
+  </html>
