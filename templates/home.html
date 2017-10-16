@@ -26,6 +26,7 @@
 <h3 class="task"><a href="{{ url_for('editTask', user_id = current_user.id, task_id = i.id) }}" style="color: black">{{ i.title }}</a></h3>
 <p class="task">{{ i.content }}</p>
 <p class="task">{{ i.priority }}</p>
+<p class="task">{{ i.date }}</p>
 <input class="task_id" value="{{ i.id }}" hidden>
 <input class="task_status" value="{{ i.is_done }}" hidden>
 
