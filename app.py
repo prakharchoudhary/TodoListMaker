@@ -46,7 +46,7 @@ def signup():
             password=form.password.data
         )
 		return redirect(url_for('index'))
-   	return render_template('signup.html', form=form)
+	return render_template('signup.html', form=form)
 
 @app.route('/login', methods=('GET', 'POST'))
 def login():
@@ -83,7 +83,7 @@ def main(user_id):
 def newTask(user_id):
 	form = forms.TaskForm()
 	if form.validate_on_submit():
-		try:		
+		try:
 			flash("You've added a new task!")
 			models.Todo.create_task(
 				title = form.title.data,
@@ -93,10 +93,10 @@ def newTask(user_id):
 				is_done = False
 				)
 			todo = models.Todo.get()
-			return redirect(url_for('main', todo=todo, user_id=user_id))
+			return redirect(url_for('main', user_id=user_id))
 		except AttributeError:
 			raise ValueError('There is some wrong field here!')
-	return render_template('new_task.html', form=form)	
+	return render_template('new_task.html', form=form)
 
 @app.route('/<int:user_id>/<int:task_id>/edit_task', methods=('GET', 'POST'))
 @login_required
@@ -104,7 +104,7 @@ def editTask(user_id, task_id):
 	task = models.Todo.get(id=task_id)
 	form = forms.TaskForm(obj=task)
 	if form.validate_on_submit():
-		try:		
+		try:
 			if form.title.data:
 				updateTitle = models.Todo.update(title=form.title.data).where(models.Todo.id == task_id)
 				updateTitle.execute()
@@ -115,10 +115,10 @@ def editTask(user_id, task_id):
 				updatePriority = models.Todo.update(priority=form.priority.data).where(models.Todo.id == task_id)
 				updatePriority.execute()
 			todo = models.Todo.get()
-			return redirect(url_for('main', todo=todo, user_id=user_id))
+			return redirect(url_for('main', user_id=user_id))
 		except AttributeError:
 			raise ValueError('There is some wrong field here!')
-	return render_template('edit_task.html', form=form)	
+	return render_template('edit_task.html', form=form)
 
 @app.route('/check', methods=('GET', 'POST'))
 @login_required
@@ -127,7 +127,7 @@ def check_task():
 	print(type(data))
 	itemTocheck = models.Todo.get(models.Todo.id == data)
 	item_status = itemTocheck.is_done
-	print type(item_status)
+	print(type(item_status))
 	itemUpdate = models.Todo.update(is_done = (item_status==False)).where(models.Todo.id == data)
 	print(models.Todo.get(models.Todo.id == data).is_done)
 	itemUpdate.execute()
@@ -138,7 +138,7 @@ def check_task():
 def del_task(user_id, task_id):
 	itemToDel = models.Todo.delete().where(models.Todo.id == task_id)
 	itemToDel.execute()
-	return redirect(url_for('main', user_id=user_id))       	
+	return redirect(url_for('main', user_id=user_id))
 
 @app.route('/')
 def index():
