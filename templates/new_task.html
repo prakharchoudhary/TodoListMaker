@@ -8,7 +8,6 @@
 
 {% block content %}
 <div class="container">
-
 	<div class="row">
         <div class="col s12">
         	<a href="{{ url_for('index') }}">
@@ -26,6 +25,8 @@
         </div>
     </div>
 
+
+
     <div class="row">
     	<div class="col s12 center-align"><h3>Add New Task</h3></div>
     </div>
@@ -34,14 +35,16 @@
 		<div class="col s6 push-s3">
 			<form action = "" method = "POST" class="form">
 				{{ form.hidden_tag() }}
-				{% for field in form %}
-					{{ render_field(field) }}
-				{% endfor %}
+				{{ form.title(placeholder="Title") }}
+				{{ form.content(class_='materialize-textarea', placeholder='Content') }}
+				{{ form.priority(class_='browser-default') }}
+
 				<div class="row">
 					<div class="col s12 center-align">
 					 	<button class="btn waves-effect waves-light blue" type="submit" name="action">Add Task<i class="material-icons right">send</i></button>
 					</div>
 				</div>
+
 			</form>
 		</div>
 	</div>

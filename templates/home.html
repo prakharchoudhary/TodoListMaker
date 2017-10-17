@@ -41,7 +41,8 @@
 
 		      	<div class="col s8">
 			      	<span class="title flow-text"><a href="{{ url_for('editTask', user_id = current_user.id, task_id = i.id) }}">{{ i.title }}</a></span>
-				    <p>{{ i.content }}<br>{{ i.priority }}</p>
+				    <p>{{ i.content }}<br>
+				    Priority: <span class="red-text">{{ i.priority }}</span></p>
 				</div>
 
 	      		

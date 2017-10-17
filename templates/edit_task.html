@@ -34,9 +34,12 @@
 		<div class="col s6 push-s3">
 			<form action = "" method = "POST" class="form">
 				{{ form.hidden_tag() }}
-				{% for field in form %}
-					{{ render_field(field) }}
-				{% endfor %}
+				
+                {{ form.hidden_tag() }}
+                {{ form.title(placeholder="Title") }}
+                {{ form.content(class_='materialize-textarea', placeholder='Content') }}
+                {{ form.priority(class_='browser-default') }}
+                
 				<div class="row">
 					<div class="col s12 center-align">
 					 	<button class="btn waves-effect waves-light blue" type="submit" name="action">Update<i class="material-icons right">send</i></button>
