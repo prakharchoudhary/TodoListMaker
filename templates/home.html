@@ -1,46 +1,73 @@
 {% extends 'layout.html' %}
 
-{% block logout %}
-{% if current_user.is_authenticated %}
-	<li class="active"><a href="{{ url_for('logout') }}">Log Out</a></li>
-{% endif %}
+{% block title %}
+	{{ current_user.username.capitalize() }}'s Todo List
 {% endblock %}
 
+
 {% block content %}
-<div class="row">
-	<div class="grid-75">
-		<h1 style="border-bottom: 1px solid #ccc; border-width: 90%">Hello, {% if current_user.is_authenticated %} {{ current_user.username }} {% endif %}</h1>
-		{% with messages=get_flashed_messages() %}
-		{% if messages %}
-		<div class="flash"><p>{{ message }}</p></div>
-		{% endif %}
-		{% endwith %}
+<div class="container">
+
+	<div class="row">
+        <div class="col s12">
+        	<a href="{{ url_for('index') }}">
+            	<h1 class="center-align blue-text text-lighten-1" style="font-family: 'Fontdiner Swanky', cursive;">Todo List Maker</h1>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 right-align">
+            <a href="{{ url_for('logout') }}" class="waves-effect waves-light btn blue">Logout</a>
+        </div>
+    </div>
+
+    <div class="row">
+    	<div class="col s12 center-align"><h3>{{ current_user.username.capitalize() }}'s To-dos</h3></div>
 	</div>
+
+
+	<div class="row center-align">
+		<a class="waves-effect waves-light btn z-depth-5 blue" href="{{ url_for('newTask', user_id = current_user.id) }}"><i class="material-icons right">add</i>Add New Task</a>
+	</div>
+
+	{% if todo %}
+		{% for i in todo %}
+
+		<ul class="collection">
+		    <li class="collection-item">
+		      
+		      <div class="row">
+
+		      	<div class="col s8">
+			      	<span class="title flow-text"><a href="{{ url_for('editTask', user_id = current_user.id, task_id = i.id) }}">{{ i.title }}</a></span>
+				    <p>{{ i.content }}<br>
+				    Priority: <span class="red-text">{{ i.priority }}</span></p>
+				</div>
+
+	      		
+		      	<div class="col s2">
+		      		<input class="task_id" value="{{ i.id }}" hidden>
+					<input class="task_status" value="{{ i.is_done }}" hidden>
+		      		<a href="#">
+						<button class="check_button"></button>
+					</a>
+		      	</div>
+
+		      	<div class="col s2">
+	      			<a href="{{ url_for('del_task', user_id = current_user.id, task_id = i.id) }}" class="waves-effect waves-light btn blue">Delete</a>
+	      		</div>
+			  </div>
+
+		    </li>    
+		</ul>
+		{% endfor %}
+	{% else %}
+			<blockquote class="flow-text">
+				There is no task left. Please, add new task.
+			</blockquote>
+	{% endif %}
 </div>
-<h3><a href="{{ url_for('newTask', user_id = current_user.id) }}"><button type="button" class="btn btn-primary btn-circle" style="width: 50%;">Add new task</button></a></h3>
-{% for i in todo %}
-
-<div class="cardx row">
-<div class="col-sm-9 col-md-6" id="task">
-
-<h3 class="task"><a href="{{ url_for('editTask', user_id = current_user.id, task_id = i.id) }}" style="color: black">{{ i.title }}</a></h3>
-<p class="task">{{ i.content }}</p>
-<p class="task">{{ i.priority }}</p>
-<p class="task">{{ i.date }}</p>
-<input class="task_id" value="{{ i.id }}" hidden>
-<input class="task_status" value="{{ i.is_done }}" hidden>
-
-</div>
-	
-<div class="col-sm-9 col-md-6 buttons">
-
-<a href="#">
-	<button class="check_button"></button>
-</a>
 
 
-<a href="{{ url_for('del_task', user_id = current_user.id, task_id = i.id) }}"><button style="background-color: red; width: 60px; height: auto;">Delete</button></a>
-</div>
-</div>
-{% endfor %}
 {% endblock %}

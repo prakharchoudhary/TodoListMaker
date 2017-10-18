@@ -1,6 +1,6 @@
 from flask_wtf import Form
 
-from wtforms import StringField, PasswordField, DateTimeField, SelectField
+from wtforms import StringField, PasswordField, DateTimeField, SelectField, TextAreaField
 from wtforms.validators import (DataRequired, Regexp, ValidationError, Email,
                                Length, EqualTo)
 from wtforms.fields.html5 import DateField
@@ -60,6 +60,6 @@ class LoginForm(Form):
 
 class TaskForm(Form):
 	title = StringField('title', validators=[DataRequired()])
-	content = StringField('content')
+	content = TextAreaField('content')
 	priority = SelectField('priority', choices=[('', 'Priority'), ('low','low'), ('medium', 'medium'), ('high','high')], default='Priority')
 	date = DateField('Pick a Date')

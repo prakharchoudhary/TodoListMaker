@@ -1,66 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
- 
-<head>
-    <title>Todo List App</title>
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+{% extends 'layout.html' %}
 
-</head>
+{% block title %} 
+    Home
+{% endblock %}
 
-<style type="text/css">
-    .bgimg{
-        background-image: url(../assets/todo_list.png);
-    }
-</style>
- 
-<body>
- 
-    <div class="container">
-        <div class="header">
-            <nav>
-                <ul class="nav nav-pills pull-right">
-                {% if current_user.is_authenticated %}
-                    <li role="presentation"><a href="{{ url_for('main', user_id = current_user.id) }}">My Todo List</a>
-                    </li>
-                    <li role="presentation"><a href="{{ url_for('logout') }}">Log Out</a>
-                {% else %}
-                    <li role="presentation"><a href="{{ url_for('login') }}">Log In</a>
-                    </li>
-                    <li role="presentation"><a href="{{ url_for('signup') }}">Sign Up</a>
-                    </li>
-                {% endif %}
-                </ul>
-            </nav>
-            <h3 class="text-muted">Todo List App</h3>
-                {% with messages=get_flashed_messages(with_categories=True) %}
-                {% if messages %}
-                {% for category, message in messages %}
-                <div class="flash notification {{category}}">{{ message }}</div>
-                {% endfor %}
-                {% endif %}
-                {% endwith %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h1 class="center-align blue-text text-lighten-1" style="font-family: 'Fontdiner Swanky', cursive; padding-top: 100px;">Todo List Maker</h1>
         </div>
- 
-        <div class="jumbotron bgimg">
-            <h1>{% if current_user.is_authenticated %}Welcome {{ current_user.username }} {% else %}Todo List App{% endif %}</h1>
-            <p class="lead"></p>
-            <p>{% if current_user.is_authenticated %}<a class="btn btn-lg btn-success" href="{{ url_for('newTask', user_id=current_user.id) }}" role="button">Add new Task</a>{% else %}<a class="btn btn-lg btn-success" href="{{ url_for('signup') }}" role="button">Sign up today</a>{% endif %}
-            </p>
-        </div>
- 
-        <div class="row marketing">
-            <div class="col-lg-12">
-                <h4>TODO LIST</h4>
-                <p>A Todo List always comes in handy when planning to do many things. So, hurry! Sign up to create your personalised todo list and make your life easier.</p>
+    </div>
+    
+    {% if current_user.is_authenticated %}
+            <div class="row">
+                <div class="right-align col s12">
+                    <a href="{{ url_for('logout') }}" class="waves-effect waves-light btn blue">Logout</a>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <br><br>
+            <div class="row">
+                <div class="s12 center-align">
+                    <div class="flow-text">
+                        Welcome, <b>{{ current_user.username.capitalize() }}</b> !
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col s6 right-align">
+                    <a href="{{ url_for('main', user_id = current_user.id) }}" class="waves-effect waves-light btn blue">My Todo List</a>
+                </div>
+                <div class="col s6 left-align">
+                    <a href="{{ url_for('newTask', user_id=current_user.id) }}" class="waves-effect waves-light btn blue">Add New Task</a>
+                </div>
+            </div>
+    {% else %}
+        <div class="row">
+            <div class="col s12">
+                 <div class="flow-text">
+                     A <b>Todo List</b> always comes in handy when planning to do many things.<b> So, hurry!</b> Sign up to create your personalised <b>Todo list</b> and make your life <b>easier</b>.
+                </div>
             </div>
         </div>
- 
-        <footer class="footer">
-            <p class="copyright"> &copy; Copyright <a href="https://www.hackncs.com"> Nibble Computer Society </a> </p>
-        </footer>
- 
-    </div>
-</body>
- 
-</html>
+        <div class="divider"></div>
+        
+        <br>
+        <div class="row">
+            <div class="col s6 right-align">
+                <a href="{{ url_for('signup') }}" class="waves-effect waves-light btn blue z-depth-5">Sign Up</a>
+            </div>
+            <div class="col s6 left-align">
+                <a href="{{ url_for('login') }}" class="waves-effect waves-light btn blue z-depth-5">Login</a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
